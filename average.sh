@@ -4,4 +4,11 @@ for i in `cat temp` ;do
 sum=`echo $sum + $i | bc`
 done
 
-echo  "Average of the host cpu is ` printf %.2f $( bc -l <<< $sum/$num) ` " | tee -a $OUT #Average the iterations
+#Comment the lines below if hyper threading is disabled in the machine
+echo  "Average of the host cpu PCPU Util is ` printf %.2f $( bc -l <<< $sum/$num) ` " | tee -a $OUT #Average the iterations
+sum=0
+for i in `cat temp1` ;do
+sum=`echo $sum + $i | bc`
+done
+echo  "Average of the host cpu PCPU Used is ` printf %.2f $( bc -l <<< $sum/$num) ` " | tee -a $OUT #Average the iterations
+

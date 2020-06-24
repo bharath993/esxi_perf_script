@@ -57,4 +57,5 @@ fi
 done
 echo 'TOTAL IOPs are:' $total  | tee -a $OUT
 cat host_cpustat.csv | cut -d "," -f 1,`head -1 host_cpustat.csv | tr "," "\12" | grep -Fn "Physical Cpu(_Total)\% Util Time" | cut -d ":" -f 1 | tr "\12" "," | sed "s/,$//"` | tail -6 |cut -d "," -f 2  | sed 's/"//g' > temp #Comment this for Linux perf
+cat host_cpustat.csv | cut -d "," -f 1,`head -1 host_cpustat.csv | tr "," "\12" | grep -Fn "Physical Cpu(_Total)\% Core Util Time" | cut -d ":" -f 1 | tr "\12" "," | sed "s/,$//"` | tail -6 |cut -d "," -f 2  | sed 's/"//g' > temp1 #Comment this when hyperthreading is disabled also for linux perf
 sh average.sh #Comment this for Linux perf
